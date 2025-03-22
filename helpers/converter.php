@@ -2,7 +2,7 @@
 
 namespace Helper;
 
-class ValueConverter
+trait ValueConverter
 {
     /**
      * Converts a value to a string
