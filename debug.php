@@ -1,5 +1,6 @@
 <?php
 
+// configure php as strict as possible
 namespace Helper;
 
 use Helper\ValueConverter;
