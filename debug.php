@@ -1,6 +1,5 @@
 <?php
 
-// configure php as strict as possible
 namespace Helper;
 
 use Helper\ValueConverter;
@@ -14,14 +13,13 @@ trait Debug
     public function log(mixed $message): void
     {
         $string = $this->convert($message);
-
-        file_put_contents(self::FILEPATH, $string . PHP_EOL, FILE_APPEND);
+        file_put_contents(self::FILEPATH, $string . PHP_EOL, FILE_APPEND | LOCK_EX);
     }
 
     public function print(mixed $message): void
     {
-        echo "<pre>";
+        echo "<div>";
         print_r($message);
-        echo "</pre>";
+        echo "</div>";
     }
 }
