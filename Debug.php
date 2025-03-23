@@ -3,6 +3,7 @@
 namespace Helper;
 
 use Helper\ValueConverter;
+use Helper\Exceptions\WriteFileException;
 
 trait Debug
 {
@@ -13,7 +14,10 @@ trait Debug
     public function log(mixed $message): void
     {
         $string = $this->convert($message);
-        file_put_contents(self::FILEPATH, $string . PHP_EOL, FILE_APPEND | LOCK_EX);
+        $result = file_put_contents(self::FILEPATH, $string . PHP_EOL, FILE_APPEND | LOCK_EX);
+        if (!isset($result)) {
+            throw new WriteFileException();
+        }
     }
 
     public function print(mixed $message): void
@@ -21,5 +25,6 @@ trait Debug
         echo "<div>";
         print_r($message);
         echo "</div>";
+        echo "\n";
     }
 }
