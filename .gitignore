@@ -1,3 +1,4 @@
 debug.log
 test.php
 vendor/
+!.tests
